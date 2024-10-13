@@ -11,14 +11,16 @@ import {
 const Navbar = ({ isAuth }) => {
   return (
     <nav>
-      <Link to="/home">
+      <Link to="/">
         <FontAwesomeIcon icon={faHouse} />
         ホーム
       </Link>
-      <Link to="/createPost">
-        <FontAwesomeIcon icon={faFilePen} />
-        記事投稿
-      </Link>
+      {isAuth ? (
+        <Link to="/createPost">
+          <FontAwesomeIcon icon={faFilePen} isAuth={isAuth} />
+          記事投稿
+        </Link>
+      ) : null}
       {!isAuth ? (
         <Link to="/login">
           <FontAwesomeIcon icon={faArrowRightToBracket} />

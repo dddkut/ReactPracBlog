@@ -8,18 +8,21 @@ import Navbar from "./components/Navbar";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
-  useEffect(() => {
-    console.log(isAuth);
-  }, [isAuth]);
+  // useEffect(() => {
+  //   console.log(isAuth);
+  // }, [isAuth]);
 
   return (
     <Router>
       <Navbar isAuth={isAuth} />
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/craetePost" element={<CreatePost />}></Route>
+        <Route
+          path="/createPost"
+          element={<CreatePost isAuth={isAuth} />}
+        ></Route>
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />}></Route>
         <Route
           path="/logout"
